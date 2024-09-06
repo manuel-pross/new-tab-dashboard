@@ -1,13 +1,11 @@
 import "./App.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-const queryClient = new QueryClient();
+import ArchLogo from "./components/ArchLogo";
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <p>hello</p>
-    </QueryClientProvider>
+    <div className="flex items-center justify-center w-full">
+      <ArchLogo />
+    </div>
   );
 }
 
