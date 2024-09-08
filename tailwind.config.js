@@ -3,6 +3,8 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     colors: {
+      // Stolen from https://github.com/tokyo-night/tokyo-night-vscode-theme
+
       "tokyo-red": "#f7768e", // Keywords, HTML elements, Terminal Red
       "tokyo-orange": "#ff9e64", // Number and Boolean constants, Terminal Red
       "tokyo-yellow": "#e0af68", // Function parameters, Terminal Yellow
