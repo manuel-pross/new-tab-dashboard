@@ -21,7 +21,7 @@ export default function Clock() {
 
   return (
     <div className="clock">
-      <time className="text-[128px] text-tokyo-white">{`${getPrefixedDate(time.getHours())}:${getPrefixedDate(time.getMinutes())}`}</time>
+      <time className="font-firacode text-[128px] text-tokyo-white">{`${getPrefixedDate(time.getHours())}:${getPrefixedDate(time.getMinutes())}`}</time>
     </div>
   );
 }

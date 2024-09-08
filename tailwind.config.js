@@ -22,7 +22,11 @@ export default {
       "tokyo-storm": "#24283b", // Editor Background (Storm)
       "tokyo-night": "#1a1b26", // Editor Background (Night)
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        firacode: ["FiraCode", "sans-serif"],
+      },
+    },
+    plugins: [],
   },
-  plugins: [],
 };
