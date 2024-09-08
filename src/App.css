@@ -1,1 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+@layer base {
+  @font-face {
+    font-family: "FiraCode";
+    font-style: normal;
+    font-weight: 400;
+    src: url(/src/assets/FiraCode-VariableFont_wght.ttf) format ("ttf");
+  }
+}

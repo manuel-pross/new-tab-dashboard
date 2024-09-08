@@ -1,10 +1,10 @@
 import "./App.css";
-import ArchLogo from "./components/ArchLogo";
+import Clock from "./components/Clock";
 
 function App() {
   return (
-    <div className="flex items-center justify-center w-full">
-      <ArchLogo />
+    <div className="w-screen h-screen flex justify-center items-center bg-tokyo-storm">
+      <Clock />
     </div>
   );
 }
