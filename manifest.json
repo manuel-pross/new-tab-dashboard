@@ -4,8 +4,7 @@
   "description": "A custom dashbord for every new tab in chrome",
   "manifest_version": 3,
   "author": "Manuel Proß",
-  "action": {
-    "default_popup": "newtab.html",
-    "default_title": "Dashboard"
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
   }
 }
