@@ -1,12 +1,12 @@
-type ChromeBookmarkResponse = {
+export type ChromeBookmarkResponse = {
   children?: BookmarkCategory[];
   dateAdded: number;
   id: string;
   title: string;
 };
 
-type BookmarkCategory = {
-  children?: Bookmark[];
+export type BookmarkCategory = {
+  children?: Array<Bookmark | BookmarkGroup>;
   dateAdded: number;
   dateGroupModified: number;
   id: string;
@@ -15,7 +15,8 @@ type BookmarkCategory = {
   title: string;
 };
 
-type BookmarkGroup = {
+export type BookmarkGroup = {
+  children: Bookmark[];
   dateAdded: number;
   dateGroupModified: number;
   id: string;
@@ -24,7 +25,7 @@ type BookmarkGroup = {
   title: string;
 };
 
-type Bookmark = {
+export type Bookmark = {
   dateAdded: number;
   dateLastUsed: number;
   id: string;

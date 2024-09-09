@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Bookmarks from "./components/Bookmarks/intex";
+import BookmarksSearch from "./components/BookmarksSearch";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Bookmarks />
+    <BookmarksSearch />
   </React.StrictMode>,
 );

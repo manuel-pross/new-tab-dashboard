@@ -17,6 +17,6 @@
     "jsx": "react-jsx",
     "types": ["vite/client", "chrome"]
   },
-  "include": ["src"],
+  "include": ["src", "./types.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
