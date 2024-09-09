@@ -1,4 +1,4 @@
-import { Bookmark, BookmarkCategory, BookmarkGroup } from "./types";
+import { Bookmark, BookmarkCategory, BookmarkFolder } from "./types";
 
 export function getCollectedBookmarks(
   bookmarkCategories: BookmarkCategory[],
@@ -18,7 +18,7 @@ export function getCollectedBookmarks(
 }
 
 export function findBookmarksWithoutChildren(
-  BookmarkBarEntries: Array<Bookmark | BookmarkGroup>,
+  BookmarkBarEntries: Array<Bookmark | BookmarkFolder>,
 ): Bookmark[] {
   const bookmarks: Bookmark[] = [];
 
