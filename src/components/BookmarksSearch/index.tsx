@@ -4,6 +4,7 @@ import {
   checkForActiveSelectionField,
   getCollectedBookmarks,
 } from "../../utils";
+import BookmarkList from "../BookmarkList";
 
 export default function BookmarksSearch() {
   const searchRef = useRef<HTMLInputElement>(null);
@@ -69,7 +70,7 @@ export default function BookmarksSearch() {
   return (
     <div>
       {isSearchOpened && (
-        <div className="flex justify-center items-center w-[75vw] max-w-[700px]">
+        <div className="flex flex-col justify-center items-center w-[75vw] max-w-[700px]">
           <input
             className="block w-full text-lg p-3 text-tokyo-white bg-tokyo-night border border-tokyo-cyan rounded-lg"
             ref={searchRef}
@@ -78,6 +79,7 @@ export default function BookmarksSearch() {
             onChange={handleChange}
             type="text"
           ></input>
+          <BookmarkList bookmarks={bookmarks} searchTerm={searchTerm} />
         </div>
       )}
     </div>
