@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Bookmark, ChromeBookmarkResponse } from "../../types";
 import {
-  checkForActiveSelectionField,
+  getIsInputFieldFocused,
   getCollectedBookmarks,
+  focusFirstSearchResult,
 } from "../../utils";
 import BookmarkList from "../BookmarkList";
 
@@ -26,12 +27,10 @@ export default function BookmarksSearch() {
 
       setBookmarks(allBookmarks);
 
-      document.addEventListener("keydown", handleKeyDown);
-      //document.addEventListener("mousedown", handleMouseDown);
+      document.addEventListener("keydown", handleGlobalKeyDown);
 
       return () => {
-        document.removeEventListener("keydown", handleKeyDown);
-        //document.removeEventListener("mousedown", handleMouseDown);
+        document.removeEventListener("keydown", handleGlobalKeyDown);
       };
     });
   }, []);
@@ -40,31 +39,30 @@ export default function BookmarksSearch() {
     searchRef?.current?.focus();
   }, [isSearchOpened]);
 
-  const handleKeyDown = (event: KeyboardEvent) => {
-    const isBKey = event.key === "b";
+  const handleGlobalKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "b" && !getIsInputFieldFocused()) {
+      event.preventDefault();
+      handleB();
+    }
+  };
 
-    if (!isBKey || checkForActiveSelectionField()) return;
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Escape") setIsSearchOpened(false);
+    if (event.key === "j" && event.altKey && getIsInputFieldFocused())
+      focusFirstSearchResult();
+    else if (event.key === "ArrowDown" && getIsInputFieldFocused()) {
+      event.preventDefault();
+      focusFirstSearchResult();
+    }
+  };
 
+  const handleB = () => {
     if (isSearchOpened) {
       searchRef?.current?.focus();
     }
 
-    event.preventDefault();
     setIsSearchOpened(true);
     setSearchTerm("");
-  };
-
-  //const handleMouseDown = (event: MouseEvent) => {
-  //  if (!searchRef.current || searchRef.current.contains(event.target as Node))
-  //    return;
-
-  //  setIsSearchOpened(false);
-  //};
-
-  const handleEscape = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key !== "Escape") return;
-
-    setIsSearchOpened(false);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,11 +76,15 @@ export default function BookmarksSearch() {
           className="block w-full text-lg p-3 mb-2 text-tokyo-white bg-tokyo-night border border-tokyo-cyan rounded-lg"
           ref={searchRef}
           value={searchTerm}
-          onKeyDown={handleEscape}
+          onKeyDown={handleKeyDown}
           onChange={handleChange}
           type="text"
         ></input>
-        <BookmarkList bookmarks={bookmarks} searchTerm={searchTerm} />
+        <BookmarkList
+          bookmarks={bookmarks}
+          searchTerm={searchTerm}
+          focusIndex={1}
+        />
       </div>
     )
   );

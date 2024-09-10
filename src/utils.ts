@@ -33,10 +33,20 @@ export function findBookmarksWithoutChildren(
   return bookmarks;
 }
 
-export function checkForActiveSelectionField(): boolean {
+export function getIsInputFieldFocused() {
   const activeElement = document.activeElement;
 
   if (!activeElement) return false;
 
   return ["INPUT"].includes(activeElement?.tagName);
+}
+
+export function focusFirstSearchResult() {
+  console.log("focus first result");
+  const firstResult: HTMLAnchorElement | null =
+    document.querySelector(".search-result");
+
+  console.log("first search result", firstResult);
+
+  firstResult?.focus();
 }
