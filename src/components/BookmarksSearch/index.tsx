@@ -27,11 +27,11 @@ export default function BookmarksSearch() {
       setBookmarks(allBookmarks);
 
       document.addEventListener("keydown", handleKeyDown);
-      document.addEventListener("mousedown", handleMouseDown);
+      //document.addEventListener("mousedown", handleMouseDown);
 
       return () => {
         document.removeEventListener("keydown", handleKeyDown);
-        document.removeEventListener("mousedown", handleMouseDown);
+        //document.removeEventListener("mousedown", handleMouseDown);
       };
     });
   }, []);
@@ -43,19 +43,23 @@ export default function BookmarksSearch() {
   const handleKeyDown = (event: KeyboardEvent) => {
     const isBKey = event.key === "b";
 
-    if (!isBKey || isSearchOpened || checkForActiveSelectionField()) return;
+    if (!isBKey || checkForActiveSelectionField()) return;
+
+    if (isSearchOpened) {
+      searchRef?.current?.focus();
+    }
 
     event.preventDefault();
     setIsSearchOpened(true);
     setSearchTerm("");
   };
 
-  const handleMouseDown = (event: MouseEvent) => {
-    if (!searchRef.current || searchRef.current.contains(event.target as Node))
-      return;
+  //const handleMouseDown = (event: MouseEvent) => {
+  //  if (!searchRef.current || searchRef.current.contains(event.target as Node))
+  //    return;
 
-    setIsSearchOpened(false);
-  };
+  //  setIsSearchOpened(false);
+  //};
 
   const handleEscape = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key !== "Escape") return;
