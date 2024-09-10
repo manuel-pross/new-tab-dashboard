@@ -69,14 +69,16 @@ export default function BookmarksSearch() {
   return (
     <div>
       {isSearchOpened && (
-        <input
-          className="block w-[75vw] max-w-[700px] text-lg p-3 text-tokyo-white bg-tokyo-night border border-tokyo-cyan rounded-lg"
-          ref={searchRef}
-          value={searchTerm}
-          onKeyDown={handleEscape}
-          onChange={handleChange}
-          type="text"
-        ></input>
+        <div className="flex justify-center items-center w-[75vw] max-w-[700px]">
+          <input
+            className="block w-full text-lg p-3 text-tokyo-white bg-tokyo-night border border-tokyo-cyan rounded-lg"
+            ref={searchRef}
+            value={searchTerm}
+            onKeyDown={handleEscape}
+            onChange={handleChange}
+            type="text"
+          ></input>
+        </div>
       )}
     </div>
   );
