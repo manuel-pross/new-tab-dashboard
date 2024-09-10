@@ -70,7 +70,7 @@ export default function BookmarksSearch() {
     <div>
       {isSearchOpened && (
         <input
-          className="text-red-800"
+          className="block w-[75vw] max-w-[700px] text-lg p-3 text-tokyo-white bg-tokyo-night border border-tokyo-cyan rounded-lg"
           ref={searchRef}
           value={searchTerm}
           onKeyDown={handleEscape}
