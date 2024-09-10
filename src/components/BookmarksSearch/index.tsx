@@ -69,20 +69,20 @@ export default function BookmarksSearch() {
     setSearchTerm(event.target.value);
   };
 
-  return (
-    isSearchOpened && (
-      <div className="fixed top-[40%] right-[50%] translate-x-[50%] w-[75vw] max-w-[700px]">
-        <input
-          id="searchBar"
-          className="block w-full text-lg p-3 mb-2 text-tokyo-white bg-tokyo-night border border-tokyo-cyan rounded-lg"
-          ref={searchRef}
-          value={searchTerm}
-          onKeyDown={handleKeyDown}
-          onChange={handleChange}
-          type="text"
-        ></input>
-        <BookmarkList bookmarks={bookmarks} searchTerm={searchTerm} />
-      </div>
-    )
+  return isSearchOpened ? (
+    <div className="fixed top-[40%] right-[50%] translate-x-[50%] w-[75vw] max-w-[700px]">
+      <input
+        id="searchBar"
+        className="block w-full text-lg p-3 mb-2 text-tokyo-white bg-tokyo-night border border-tokyo-cyan rounded-lg"
+        ref={searchRef}
+        value={searchTerm}
+        onKeyDown={handleKeyDown}
+        onChange={handleChange}
+        type="text"
+      ></input>
+      <BookmarkList bookmarks={bookmarks} searchTerm={searchTerm} />
+    </div>
+  ) : (
+    <></>
   );
 }

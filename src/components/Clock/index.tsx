@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import useDate from "../../hooks/useDate";
 
-function getPrefixedDate(time: number): string {
+function getPrefixedTime(time: number): string {
   if (!Number.isInteger) {
     return "";
   }
@@ -9,17 +9,9 @@ function getPrefixedDate(time: number): string {
 }
 
 export default function Clock() {
-  const [time, setTime] = useState(new Date());
-
-  useEffect(() => {
-    const timeInterval = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(timeInterval);
-  }, []);
+  const date = useDate();
 
   return (
-    <time className="text-[128px] text-tokyo-white">{`${getPrefixedDate(time.getHours())}:${getPrefixedDate(time.getMinutes())}`}</time>
+    <time className="text-[128px] leading-[6rem] pt-4 text-tokyo-white">{`${getPrefixedTime(date.getHours())}:${getPrefixedTime(date.getMinutes())}`}</time>
   );
 }
