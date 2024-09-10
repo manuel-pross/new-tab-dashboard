@@ -32,3 +32,11 @@ export function findBookmarksWithoutChildren(
 
   return bookmarks;
 }
+
+export function checkForActiveSelectionField(): boolean {
+  const activeElement = document.activeElement;
+
+  if (!activeElement) return false;
+
+  return ["INPUT"].includes(activeElement?.tagName);
+}

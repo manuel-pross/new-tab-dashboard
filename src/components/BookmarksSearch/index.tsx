@@ -1,10 +1,15 @@
-//import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Bookmark, ChromeBookmarkResponse } from "../../types";
-import { getCollectedBookmarks } from "../../utils";
+import {
+  checkForActiveSelectionField,
+  getCollectedBookmarks,
+} from "../../utils";
 
 export default function BookmarksSearch() {
+  const searchRef = useRef<HTMLInputElement>(null);
+
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
+  const [isSearchOpened, setIsSearchOpened] = useState<boolean>(false);
 
   useEffect(() => {
     chrome.bookmarks.getTree((bookmarkTreeNodes) => {
@@ -17,15 +22,50 @@ export default function BookmarksSearch() {
         chromeBookmarkResponse[0].children,
       );
 
-      console.log(allBookmarks);
-
       setBookmarks(allBookmarks);
+
+      document.addEventListener("keydown", handleKeyDown);
+      document.addEventListener("mousedown", handleMouseDown);
+
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+        document.removeEventListener("mousedown", handleMouseDown);
+      };
     });
   }, []);
 
+  useEffect(() => {
+    searchRef?.current?.focus();
+  }, [isSearchOpened]);
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    const isBKey = event.key === "b";
+
+    if (!isBKey || isSearchOpened || checkForActiveSelectionField()) return;
+
+    setIsSearchOpened(true);
+  };
+
+  const handleMouseDown = (event: MouseEvent) => {
+    if (!searchRef.current || searchRef.current.contains(event.target as Node))
+      return;
+
+    setIsSearchOpened(false);
+  };
+
+  const handleEscape = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key !== "Escape") return;
+
+    setIsSearchOpened(false);
+  };
+
   return (
     <div>
-      hello from bookmarks <pre>{JSON.stringify(bookmarks)}</pre>
+      {isSearchOpened ? (
+        <input ref={searchRef} onKeyDown={handleEscape} type="text"></input>
+      ) : (
+        <div>No shortcut</div>
+      )}
     </div>
   );
 }

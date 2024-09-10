@@ -34,3 +34,8 @@ export type Bookmark = {
   title: string;
   url: string;
 };
+
+export type BookmarkSelectOption = {
+  value: string;
+  label: string;
+};
