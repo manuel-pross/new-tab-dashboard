@@ -86,7 +86,7 @@ export default function BookmarkList({
         return (
           <li className="list-none" key={bookmark.id}>
             <a
-              className="block border-b-2 last:border-b-0 text-tokyo-white border-b-tokyo-black search-result focus:text-tokyo-black focus:bg-tokyo-white"
+              className="block border-b-2 last:border-b-0 text-tokyo-white border-b-tokyo-black search-result focus:text-tokyo-black focus:bg-tokyo-white focus-visible:text-tokyo-black focus-visible:bg-tokyo-white focus-visible:outline-none"
               href={bookmark.url}
               data-listindex={i}
             >
