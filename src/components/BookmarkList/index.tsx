@@ -30,8 +30,6 @@ export default function BookmarkList({
       return;
     }
 
-    console.log(listIndex);
-
     const bookmarkAnchor: HTMLAnchorElement | null = document.querySelector(
       `a[data-listindex="${listIndex}"]`,
     );
@@ -50,27 +48,31 @@ export default function BookmarkList({
   const handleKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
     event.preventDefault();
 
-    if (event.key === "Escape") {
+    const { key } = event;
+
+    if (key === "Escape") {
       const searchBar: HTMLInputElement | null =
         document.querySelector("#searchBar");
       searchBar?.focus();
+
       setListIndex(0);
       skipFocusRef.current = true;
+
       return;
     }
 
-    if (
-      (event.key === "j" || event.key === "ArrowDown") &&
-      listIndex < searchedBookmarks.length - 1
-    ) {
+    const isDownKey = key === "j" || key === "ArrowDown";
+    const isUpKey = key === "k" || key === "ArrowUp";
+
+    if (isDownKey && listIndex < searchedBookmarks.length - 1) {
+      skipFocusRef.current = false;
       setListIndex(listIndex + 1);
       return;
     }
 
-    console.log("before reducing index");
-    if ((event.key === "k" || event.key === "ArrowUp") && listIndex > 0) {
+    if (isUpKey && listIndex > 0) {
+      skipFocusRef.current = false;
       setListIndex(listIndex - 1);
-      console.log("after reducing index");
       return;
     }
   };
