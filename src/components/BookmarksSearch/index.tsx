@@ -68,9 +68,9 @@ export default function BookmarksSearch() {
   };
 
   return (
-    <div>
+    <>
       {isSearchOpened && (
-        <div className="flex flex-col justify-center items-center w-[75vw] max-w-[700px]">
+        <div className="absolute top-[50%] right-[50%] translate-y-[-50%] translate-x-[50%] w-[75vw] max-w-[700px]">
           <input
             className="block w-full text-lg p-3 text-tokyo-white bg-tokyo-night border border-tokyo-cyan rounded-lg"
             ref={searchRef}
@@ -82,6 +82,6 @@ export default function BookmarksSearch() {
           <BookmarkList bookmarks={bookmarks} searchTerm={searchTerm} />
         </div>
       )}
-    </div>
+    </>
   );
 }
