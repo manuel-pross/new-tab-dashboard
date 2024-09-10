@@ -30,9 +30,6 @@ export default function BookmarkList({
     });
 
     setSearchedBookmarks(results);
-
-    console.log(results);
-
     return [];
   };
 
