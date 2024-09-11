@@ -1,9 +1,9 @@
 name: Prettier Formatting
 on:
   push:
-    branches: '*'
   pull_request:
-    branches: -'master'
+    branches:
+      - '*'
 jobs:
   prettier:
     name: Run Prettier
