@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { Bookmark } from "../../types";
+import { useEffect, useRef, useState } from 'react';
+import { Bookmark } from '../../types';
 
 type BookmarkListProps = {
   bookmarks: Bookmark[];
@@ -16,7 +16,7 @@ export default function BookmarkList({
   const skipFocusRef = useRef(false);
 
   useEffect(() => {
-    if (searchTerm === "") {
+    if (searchTerm === '') {
       setSearchedBookmarks([]);
       return;
     }
@@ -31,7 +31,7 @@ export default function BookmarkList({
     }
 
     const bookmarkAnchor: HTMLAnchorElement | null = document.querySelector(
-      `a[data-listindex="${listIndex}"]`,
+      `a[data-listindex="${listIndex}"]`
     );
 
     bookmarkAnchor?.focus();
@@ -40,7 +40,7 @@ export default function BookmarkList({
   const filterBookmarks = (bookmarks: Bookmark[], searchTerm: string) => {
     const results = bookmarks.filter((bookmark) => {
       const prefixedTitle =
-        (bookmark?.parentPrefix || "").toLowerCase() +
+        (bookmark?.parentPrefix || '').toLowerCase() +
         bookmark.title.toLowerCase();
       return prefixedTitle.includes(searchTerm.toLowerCase());
     });
@@ -51,10 +51,10 @@ export default function BookmarkList({
   const handleKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
     const { key } = event;
 
-    if (key === "Escape") {
+    if (key === 'Escape') {
       event.preventDefault();
       const searchBar: HTMLInputElement | null =
-        document.querySelector("#searchBar");
+        document.querySelector('#searchBar');
       searchBar?.focus();
 
       setListIndex(0);
@@ -63,8 +63,8 @@ export default function BookmarkList({
       return;
     }
 
-    const isDownKey = key === "j" || key === "ArrowDown";
-    const isUpKey = key === "k" || key === "ArrowUp";
+    const isDownKey = key === 'j' || key === 'ArrowDown';
+    const isUpKey = key === 'k' || key === 'ArrowUp';
 
     if (isDownKey && listIndex < searchedBookmarks.length - 1) {
       event.preventDefault();

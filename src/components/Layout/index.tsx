@@ -1,6 +1,6 @@
-import BookmarksSearch from "../BookmarksSearch";
-import Clock from "../Clock";
-import CustomDate from "../CustomDate";
+import BookmarksSearch from '../BookmarksSearch';
+import Clock from '../Clock';
+import CustomDate from '../CustomDate';
 
 export default function Layout() {
   return (
