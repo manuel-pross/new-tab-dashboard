@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export default function useDate(interval = 1000) {
   const [date, setDate] = useState(new Date());

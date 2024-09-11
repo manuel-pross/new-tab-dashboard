@@ -1,8 +1,8 @@
-import useDate from "../../hooks/useDate";
+import useDate from '../../hooks/useDate';
 
 function getPrefixedTime(time: number): string {
   if (!Number.isInteger) {
-    return "";
+    return '';
   }
 
   return time > 9 ? `${time}` : `0${time}`;

@@ -1,10 +1,10 @@
-import useDate from "../../hooks/useDate";
+import useDate from '../../hooks/useDate';
 
 function getFormattedDate(date: Date) {
-  return date.toLocaleDateString("de-De", {
-    month: "2-digit",
-    day: "2-digit",
-    year: "2-digit",
+  return date.toLocaleDateString('de-De', {
+    month: '2-digit',
+    day: '2-digit',
+    year: '2-digit',
   });
 }
 
