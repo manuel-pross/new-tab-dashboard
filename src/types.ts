@@ -22,6 +22,7 @@ export type BookmarkFolder = {
   id: string;
   index: number;
   parentId: string;
+  parentPrefix?: string;
   title: string;
 };
 
@@ -31,6 +32,7 @@ export type Bookmark = {
   id: string;
   index: number;
   parentId: string;
+  parentPrefix?: string;
   title: string;
   url: string;
 };

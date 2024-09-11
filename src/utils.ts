@@ -1,5 +1,7 @@
 import { Bookmark, BookmarkCategory, BookmarkFolder } from "./types";
 
+const parentIdPrefixMap = new Map<string, string>();
+
 export function getCollectedBookmarks(
   bookmarkCategories: BookmarkCategory[],
 ): Bookmark[] {
@@ -14,18 +16,29 @@ export function getCollectedBookmarks(
 
   const allBookmarks = findBookmarksWithoutChildren(bookmarksBar.children);
 
+  console.log(parentIdPrefixMap);
+
   return allBookmarks;
 }
 
 export function findBookmarksWithoutChildren(
-  BookmarkBarEntries: Array<Bookmark | BookmarkFolder>,
+  bookmarkBarEntries: Array<Bookmark | BookmarkFolder>,
 ): Bookmark[] {
   const bookmarks: Bookmark[] = [];
 
-  for (const entry of BookmarkBarEntries) {
+  for (const entry of bookmarkBarEntries) {
     if (!("children" in entry)) {
-      bookmarks.push(entry);
+      const bookmark = {
+        ...entry,
+        parentPrefix: parentIdPrefixMap.get(entry.parentId),
+      };
+      bookmarks.push(bookmark);
     } else if (entry.children.length > 0) {
+      parentIdPrefixMap.set(
+        entry.id,
+        `${parentIdPrefixMap.get(entry.parentId) || ""}${entry.title}/`,
+      );
+
       bookmarks.push(...findBookmarksWithoutChildren(entry.children));
     }
   }

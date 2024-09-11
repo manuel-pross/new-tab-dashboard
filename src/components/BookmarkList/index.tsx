@@ -39,7 +39,10 @@ export default function BookmarkList({
 
   const filterBookmarks = (bookmarks: Bookmark[], searchTerm: string) => {
     const results = bookmarks.filter((bookmark) => {
-      return bookmark.title.toLowerCase().includes(searchTerm.toLowerCase());
+      const prefixedTitle =
+        (bookmark?.parentPrefix || "").toLowerCase() +
+        bookmark.title.toLowerCase();
+      return prefixedTitle.includes(searchTerm.toLowerCase());
     });
 
     setSearchedBookmarks(results);
@@ -92,7 +95,7 @@ export default function BookmarkList({
               data-listindex={i}
               target="_self"
             >
-              <span className="block py-1 px-2">{bookmark.title}</span>
+              <span className="block py-1 px-2">{`${bookmark?.parentPrefix}${bookmark.title}`}</span>
             </a>
           </li>
         );
