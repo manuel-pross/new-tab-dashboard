@@ -16,8 +16,6 @@ export function getCollectedBookmarks(
 
   const allBookmarks = findBookmarksWithoutChildren(bookmarksBar.children);
 
-  console.log(parentIdPrefixMap);
-
   return allBookmarks;
 }
 
