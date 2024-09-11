@@ -15,6 +15,8 @@ export default function BookmarkList({
 
   const skipFocusRef = useRef(false);
 
+  console.log('test');
+
   useEffect(() => {
     if (searchTerm === '') {
       setSearchedBookmarks([]);
