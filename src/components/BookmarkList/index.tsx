@@ -46,11 +46,10 @@ export default function BookmarkList({
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
-    event.preventDefault();
-
     const { key } = event;
 
     if (key === "Escape") {
+      event.preventDefault();
       const searchBar: HTMLInputElement | null =
         document.querySelector("#searchBar");
       searchBar?.focus();
@@ -65,12 +64,14 @@ export default function BookmarkList({
     const isUpKey = key === "k" || key === "ArrowUp";
 
     if (isDownKey && listIndex < searchedBookmarks.length - 1) {
+      event.preventDefault();
       skipFocusRef.current = false;
       setListIndex(listIndex + 1);
       return;
     }
 
     if (isUpKey && listIndex > 0) {
+      event.preventDefault();
       skipFocusRef.current = false;
       setListIndex(listIndex - 1);
       return;
@@ -86,9 +87,10 @@ export default function BookmarkList({
         return (
           <li className="list-none" key={bookmark.id}>
             <a
-              className="block border-b-2 last:border-b-0 text-tokyo-white border-b-tokyo-black search-result focus:text-tokyo-black focus:bg-tokyo-white focus-visible:text-tokyo-black focus-visible:bg-tokyo-white focus-visible:outline-none"
+              className="block border-b-2 last:border-b-0 text-tokyo-white border-b-tokyo-black search-result focus:text-tokyo-black focus:bg-tokyo-white focus-visible:text-tokyo-black focus-visible:bg-tokyo-white focus-visible:outline-none hover:bg-tokyo-white hover:text-tokyo-black"
               href={bookmark.url}
               data-listindex={i}
+              target="_self"
             >
               <span className="block py-1 px-2">{bookmark.title}</span>
             </a>
