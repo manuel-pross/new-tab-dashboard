@@ -13,6 +13,9 @@ export default function BookmarksSearch() {
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
   const [isSearchOpened, setIsSearchOpened] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [firstSearchResult, setFirstSearchResult] = useState<Bookmark | null>(
+    null
+  );
 
   useEffect(() => {
     chrome.bookmarks.getTree((bookmarkTreeNodes) => {
@@ -48,11 +51,14 @@ export default function BookmarksSearch() {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Escape') setIsSearchOpened(false);
-    if (event.key === 'j' && event.altKey && getIsInputFieldFocused())
+    else if (event.key === 'j' && event.altKey && getIsInputFieldFocused())
       focusFirstSearchResult();
     else if (event.key === 'ArrowDown' && getIsInputFieldFocused()) {
       event.preventDefault();
       focusFirstSearchResult();
+    } else if (event.key === 'Enter') {
+      event.preventDefault();
+      firstSearchResult && (window.location.href = firstSearchResult?.url);
     }
   };
 
@@ -69,6 +75,10 @@ export default function BookmarksSearch() {
     setSearchTerm(event.target.value);
   };
 
+  const handleFirstSearchResult = (firstSearchResult: Bookmark | null) => {
+    setFirstSearchResult(firstSearchResult);
+  };
+
   return isSearchOpened ? (
     <div className="fixed top-[40%] right-[50%] translate-x-[50%] w-[75vw] max-w-[700px]">
       <input
@@ -80,7 +90,11 @@ export default function BookmarksSearch() {
         onChange={handleChange}
         type="text"
       ></input>
-      <BookmarkList bookmarks={bookmarks} searchTerm={searchTerm} />
+      <BookmarkList
+        bookmarks={bookmarks}
+        searchTerm={searchTerm}
+        onFirstSearchResult={handleFirstSearchResult}
+      />
     </div>
   ) : (
     <></>
