@@ -39,15 +39,6 @@ export default function BookmarkList({
     bookmarkAnchor?.focus();
   }, [listIndex]);
 
-  useEffect(() => {
-    if (searchedBookmarks.length <= 0) return;
-
-    const firstBookmark: HTMLAnchorElement | null =
-      document.querySelector('a[target="_self"]');
-
-    firstBookmark;
-  }, [searchedBookmarks]);
-
   const filterBookmarks = (bookmarks: Bookmark[], searchTerm: string) => {
     const results = bookmarks.filter((bookmark) => {
       const prefixedTitle =
