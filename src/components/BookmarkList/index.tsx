@@ -4,11 +4,13 @@ import { Bookmark } from '../../types';
 type BookmarkListProps = {
   bookmarks: Bookmark[];
   searchTerm: string;
+  onFirstSearchResult: (firstSearchResult: Bookmark | null) => void;
 };
 
 export default function BookmarkList({
   bookmarks,
   searchTerm,
+  onFirstSearchResult,
 }: BookmarkListProps) {
   const [searchedBookmarks, setSearchedBookmarks] = useState<Bookmark[]>([]);
   const [listIndex, setListIndex] = useState(0);
@@ -45,6 +47,8 @@ export default function BookmarkList({
       return prefixedTitle.includes(searchTerm.toLowerCase());
     });
 
+    const firstSearchResult = results[0];
+    onFirstSearchResult(firstSearchResult);
     setSearchedBookmarks(results);
   };
 
@@ -90,7 +94,7 @@ export default function BookmarkList({
         return (
           <li className="list-none" key={bookmark.id}>
             <a
-              className="block border-b-2 last:border-b-0 text-tokyo-white border-b-tokyo-black search-result focus:text-tokyo-black focus:bg-tokyo-white focus-visible:text-tokyo-black focus-visible:bg-tokyo-white focus-visible:outline-none hover:bg-tokyo-white hover:text-tokyo-black"
+              className={`block border-b-2 last:border-b-0 text-tokyo-white border-b-tokyo-black search-result focus:text-tokyo-black focus:bg-tokyo-white focus-visible:text-tokyo-black focus-visible:bg-tokyo-white focus-visible:outline-none hover:bg-tokyo-white hover:text-tokyo-black ${i === 0 && listIndex === 0 ? 'first-search-result' : ''}`}
               href={bookmark.url}
               data-listindex={i}
               target="_self"
