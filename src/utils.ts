@@ -9,7 +9,7 @@ export function getCollectedBookmarks(
     return [];
 
   const bookmarksBar = bookmarkCategories.find(
-    (category) => category.title === 'Bookmarks bar'
+    (category) => category.id === '1'
   );
 
   if (!bookmarksBar?.children?.length) return [];
