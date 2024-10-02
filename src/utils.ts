@@ -28,7 +28,7 @@ export function findBookmarksWithoutChildren(
     if (!('children' in entry)) {
       const bookmark = {
         ...entry,
-        parentPrefix: parentIdPrefixMap.get(entry.parentId),
+        parentPrefix: parentIdPrefixMap.get(entry.parentId) || '',
       };
       bookmarks.push(bookmark);
     } else if (entry.children.length > 0) {
