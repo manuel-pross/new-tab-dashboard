@@ -89,6 +89,7 @@ export default function BookmarksSearch() {
         onKeyDown={handleKeyDown}
         onChange={handleChange}
         type="text"
+        autoComplete="off"
       ></input>
       <BookmarkList
         bookmarks={bookmarks}
