@@ -50,3 +50,8 @@
     outline: none;
   }
 }
+
+@font-face {
+  font-family: 'Fira Code';
+  src: local('FiraCode-Regular'), url('./assets/fonts/FiraCode-Regular.ttf');
+}
