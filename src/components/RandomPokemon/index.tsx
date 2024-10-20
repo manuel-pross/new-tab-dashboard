@@ -54,7 +54,7 @@ export default function RandomPokemon() {
               return (
                 <span
                   key={type.type.name}
-                  className="block rounded-lg px-2 text-lg"
+                  className="block rounded-lg px-2 text-lg font-bold"
                   style={{ backgroundColor: typeColorMap.get(type.type.name) }}
                 >
                   {getFirstCharUpperCase(type.type.name)}
