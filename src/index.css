@@ -51,12 +51,10 @@
   }
 
   .card {
-    position: absolute;
     top: 50%;
     left: 50%;
-    width: 300px;
-    height: 300px;
-    margin: -150px;
+    width: 200px;
+    height: 200px;
     float: left;
     perspective: 500px;
   }
@@ -78,12 +76,19 @@
   .card-front,
   .card-back {
     position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     height: 100%;
     width: 100%;
     background: var(--tokyo-white);
-    font-size: 60px;
     border-radius: 5px;
     backface-visibility: hidden;
+
+    padding: 1rem;
   }
 
   .card-back {

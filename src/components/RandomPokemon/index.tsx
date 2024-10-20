@@ -1,6 +1,10 @@
 import { useQuery } from 'react-query';
 import { Pokemon } from '../../types';
-import { getRandomNumber } from '../../utils';
+import {
+  getFirstCharUpperCase,
+  getRandomNumber,
+  typeColorMap,
+} from '../../utils';
 
 export default function RandomPokemon() {
   const {
@@ -32,20 +36,32 @@ export default function RandomPokemon() {
   }
 
   return (
-    <div className="card">
+    <div className="col-start-2 row-start-2 justify-self-center card">
       <div className="card-content">
         <div className="card-front">
           <img
-            width="120px"
+            width="140px"
             src={pokemon.sprites.front_default}
             alt={`the sprite of ${pokemon.name}`}
           ></img>
         </div>
         <div className="card-back">
-          <p>{pokemon.name}</p>
-          {pokemon.types.map((type) => {
-            return <p>{type.type.name}</p>;
-          })}
+          <h2 className="mb-16 text-2xl text-tokyo-night text-center font-bold">
+            {getFirstCharUpperCase(pokemon.name)}
+          </h2>
+          <div className="flex justify-center gap-2">
+            {pokemon.types.map((type) => {
+              return (
+                <span
+                  key={type.type.name}
+                  className="block rounded-lg px-2 text-lg"
+                  style={{ backgroundColor: typeColorMap.get(type.type.name) }}
+                >
+                  {getFirstCharUpperCase(type.type.name)}
+                </span>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
