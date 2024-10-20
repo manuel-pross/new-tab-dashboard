@@ -1,14 +1,14 @@
 import BookmarksSearch from '../BookmarksSearch';
 import Clock from '../Clock';
 import CustomDate from '../CustomDate';
+import RandomPokemon from '../RandomPokemon';
 
 export default function Layout() {
   return (
-    <div className="flex justify-center w-screen h-screen bg-tokyo-storm font-fira">
-      <div className="flex justify-between pt-6 px-8 w-full max-w-[1400px]">
-        <Clock />
-        <CustomDate />
-      </div>
+    <div className="grid grid-cols-2 w-screen h-screen bg-tokyo-storm font-fira">
+      <Clock />
+      <CustomDate />
+      <RandomPokemon />
       <BookmarksSearch />
     </div>
   );
