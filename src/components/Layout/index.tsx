@@ -5,7 +5,7 @@ import RandomPokemon from '../RandomPokemon';
 
 export default function Layout() {
   return (
-    <div className="grid grid-cols-2 w-screen h-screen bg-tokyo-storm font-fira">
+    <div className="grid grid-cols-2 grid-rows-[auto_1fr] w-screen h-screen bg-tokyo-storm font-fira">
       <Clock />
       <CustomDate />
       <RandomPokemon />
