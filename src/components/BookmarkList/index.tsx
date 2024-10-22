@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Bookmark } from '../../types';
 
-type BookmarkListProps = {
+export type BookmarkListProps = {
   bookmarks: Bookmark[];
   searchTerm: string;
   onFirstSearchResult: (firstSearchResult: Bookmark | null) => void;

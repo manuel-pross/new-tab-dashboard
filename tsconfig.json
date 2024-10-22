@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vite/client", "chrome"]
+    "types": ["vite/client", "vitest/globals", "chrome"]
   },
   "include": ["src", "./types.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
