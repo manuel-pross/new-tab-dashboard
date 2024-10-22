@@ -17,7 +17,7 @@ export default function CustomDate() {
 
   return (
     <time
-      className="text-[64px] leading-[3rem] text-tokyo-white"
+      className="justify-self-center mt-6 text-[64px] leading-[3rem] text-tokyo-white"
       dateTime={getIsoDate(date)}
     >
       {getFormattedDate(date)}

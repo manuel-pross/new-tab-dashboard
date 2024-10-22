@@ -12,6 +12,6 @@ export default function Clock() {
   const date = useDate();
 
   return (
-    <time className="text-[128px] leading-[6rem] text-tokyo-white">{`${getPrefixedTime(date.getHours())}:${getPrefixedTime(date.getMinutes())}`}</time>
+    <time className="justify-self-center mt-6 text-[128px] leading-[6rem] text-tokyo-white">{`${getPrefixedTime(date.getHours())}:${getPrefixedTime(date.getMinutes())}`}</time>
   );
 }
