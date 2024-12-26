@@ -19,4 +19,3 @@ As soon as the dashbaord has the focus you can open the search field by pressing
 The result list can be traversed with the arrow keys or vim keys (j and k).
 
 To close the search bar press escape when it has the focus.
-
